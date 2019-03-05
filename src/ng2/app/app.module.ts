@@ -4,14 +4,16 @@ import { RouterModule, UrlHandlingStrategy } from '@angular/router';
 
 import { UpgradeModule, downgradeComponent } from '@angular/upgrade/static';
 import { AppComponent } from './app.component';
-import { Ng2DemoComponent } from "ng2/app/ng2-demo.component";
-import { phoneServiceProvider } from "ng2/app/phone.service";
+import { Ng2DemoComponent } from 'ng2/app/ng2-demo.component';
+import { phoneServiceProvider } from 'ng2/app/phone.service';
+import {Ng7DemoComponent} from './ng7-demo.component';
+import {Ng8DemoComponent} from './ng8-demo.component';
 
 declare var angular: any;
 
 export class CustomHandlingStrategy implements UrlHandlingStrategy {
   shouldProcessUrl(url) {
-    return url.toString().startsWith("/ng2-route") || url.toString() == "/"
+    return url.toString().startsWith('/ng') || url.toString() === '/'
   }
   extract(url) { return url; }
   merge(url, whole) { return url; }
@@ -26,7 +28,9 @@ angular.module('phonecatApp')
 @NgModule({
   declarations: [
     AppComponent,
-    Ng2DemoComponent
+    Ng2DemoComponent,
+    Ng7DemoComponent,
+    Ng8DemoComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +44,14 @@ angular.module('phonecatApp')
       {
         path: 'ng2-route',
         component: Ng2DemoComponent
+      },
+      {
+        path: 'ng7-route',
+        component: Ng7DemoComponent
+      },
+      {
+        path: 'ng8-route',
+        component: Ng8DemoComponent
       }
     ],
     {
@@ -49,7 +61,7 @@ angular.module('phonecatApp')
     )
   ],
   entryComponents: [
-    Ng2DemoComponent // Don't forget this!!!
+    Ng2DemoComponent
   ],
   providers: [
     phoneServiceProvider,
